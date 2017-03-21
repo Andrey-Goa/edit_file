@@ -5,25 +5,26 @@ public class Main {
     public static void main(String[] args) throws IOException {
         CsvReader csvReader = new CsvReader();
         Set<Line> lineSet = csvReader.readFile();
-        Map<String, Set<Line>> map = new HashMap<>();
+        Map<MainString, Set<Line>> map = new HashMap<>();
         for (Line strings : lineSet) {
-            for (String st : strings.getStrings()) {
-                if (!st.equals("\"\"")) {
-                    map.put(st, new HashSet<Line>());
+            for (int i = 0; i < strings.getStrings().length; i++) {
+                if (!strings.getStrings()[i].equals("\"\"")&&(!strings.getStrings()[i].equals(""))) {
+                    MainString mainString = new MainString(strings.getStrings()[i], i);
+                    map.put(mainString, new HashSet<>());
 
                 }
 
             }
         }
         for (Line strings : lineSet) {
-            for (String st : strings.getStrings()) {
-                if (map.containsKey(st)) {
-                    map.get(st).add(strings);
+            for (int i = 0; i < strings.getStrings().length; i++) {
+                MainString mainString = new MainString(strings.getStrings()[i],i);
+                if (map.containsKey(mainString)) {
+                    map.get(mainString).add(strings);
                 }
             }
-
-
         }
+
         GroupGenerator groupGenerator = new GroupGenerator();
         groupGenerator.getGroups(map);
 

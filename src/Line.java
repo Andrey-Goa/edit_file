@@ -6,7 +6,10 @@ public class Line {
     private String [] strings = null;
 
     public void setStrings(String[] strings) {
-        if(strings.length <2){
+        if(strings.length == 0){
+            String[] strings1 = {"\"\"", "\"\"", "\"\""};
+            this.strings = strings1;
+        }else if(strings.length <2){
             String[] strings1 = {strings[0], "\"\"", "\"\""};
             this.strings = strings1;
         } else if(strings.length == 2){
