@@ -14,10 +14,6 @@ public class MainString {
         this.value = value;
     }
 
-    public void setSupermap(String key, Integer value) {
-       this.key = key;
-       this.value = value;
-    }
 
     public String getString(){
         return key;
